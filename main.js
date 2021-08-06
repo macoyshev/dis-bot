@@ -7,6 +7,7 @@ const client = new Discord.Client();
 client.commands = new Discord.Collection()
 global.commandsInfo = new Map()
 
+
 fs.readdir('./commands', function(err, files){
     if (err) console.log(err);
 
