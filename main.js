@@ -40,4 +40,4 @@ client.on("message", (message) => {
 
 client.on('ready', )
 
-client.login(config.BOT_TOKEN)
+client.login(process.env.config.BOT_TOKEN)
