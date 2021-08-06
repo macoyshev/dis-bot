@@ -38,6 +38,5 @@ client.on("message", (message) => {
     if (command_file) command_file.run(client, message, args, prefix)
 })
 
-client.on('ready', )
 
 client.login(config.BOT_TOKEN)
