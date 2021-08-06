@@ -9,8 +9,10 @@ module.exports.run = (client, message, args, prefix) => {
     
     message.guild.members.fetch()
         .then(members => {
+            let guild_members = new Map() 
+
             members.forEach(member => {
-                console.log(member.user.username);
+                guild_members.set(member.user.username, member.user)
             })
         })
         .catch()
