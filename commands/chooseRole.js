@@ -1,7 +1,7 @@
 const unavailableRoles = ['@everyone', 'MAC-0.1']
 
 module.exports.run = (client, message, args, prefix) => {
-    
+
     //get user who send command
     const id = message.author.id
     let user = message.guild.members.cache.get(id)
@@ -10,9 +10,7 @@ module.exports.run = (client, message, args, prefix) => {
     let roles_current_guild = new Map()
     let current_guild
 
-    const role_to_zero = '0'
-    let desireble_role_name = args[0]
-    let desireble_role_member = args[1]
+    const zero_option = '0'
     let role_to_member
     let role_to_set
 
@@ -23,22 +21,25 @@ module.exports.run = (client, message, args, prefix) => {
     })
     
     //get map of roles
+    roles_current_guild.set(zero_option, [])
     current_guild.roles.cache.forEach( role => {
         roles_current_guild.set(role.name, role)
     })
     
-    //check role specified
-    if (!desireble_role_name){ displayRoles(roles_current_guild, message, role_to_zero); return}
+    //check if role was specified 
+    if (!args[0]){ displayRoles(roles_current_guild, message, zero_option); return}
 
-    role_to_set = [roles_current_guild.get(desireble_role_name)]
-    role_to_member = guild_members.get(desireble_role_member)
+    //set role_to_set desirable role
+    role_to_set = roles_current_guild.get(args[0])
+    if (role_to_set === "undefined") {message.channel.send(`The wrong role: ${args[0]}`); return}
     
+    //set role_to_member desirable member
+    role_to_member = guild_members.get(args[1])  
     if (role_to_member) user = role_to_member
-    if (role_to_set === "undefined") {message.channel.send(`The wrong role: ${desireble_role_name}`); return}
-
-    if (role_to_set === role_to_zero) user.roles.set([])
-    else user.roles.set([role_to_set])
-
+    if (!role_to_member && args[1]) {message.channel.send(`The wrong member: ${args[1]}`); return}
+    
+    //set role
+    user.roles.set([role_to_set])
     console.log(user);
 }
 
