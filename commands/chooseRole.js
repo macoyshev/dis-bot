@@ -40,7 +40,6 @@ module.exports.run = (client, message, args, prefix) => {
     
     //set role
     user.roles.set([role_to_set])
-    console.log(user);
 }
 
 module.exports.help = {
@@ -48,7 +47,7 @@ module.exports.help = {
     description: "role [desireble role] - display available roles, if you want get role, type this next"
 }
 
-async function displayRoles(roles_map, message, role_to_zero){
+async function displayRoles(roles_map, message, role_to_zero){ 
     let out = "You can use next roles:"
     for (let role of roles_map.keys()){
         if (!unavailableRoles.includes(role) && role !== role_to_zero)
