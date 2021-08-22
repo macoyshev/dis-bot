@@ -4,7 +4,7 @@ module.exports.run = (client, message, args, prefix) => {
     
     if (!message.guild) {
         message.channel.send('Role can be set only in guild')
-        return
+        return;
     }
 
     //get user who send command
