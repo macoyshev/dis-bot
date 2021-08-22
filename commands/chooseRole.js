@@ -2,14 +2,15 @@ const unavailableRoles = ['@everyone', 'MAC-0.1']
 
 module.exports.run = (client, message, args, prefix) => {
     
-    if (!message.guild) {
-        message.channel.send('Role can be set only in guild')
-        return;
-    }
 
     //get user who send command
-    const id = message.author.id
-    let user = message.guild.members.cache.get(id)
+    try{
+        const id = message.author.id
+        let user = message.guild.members.cache.get(id)
+    }catch(e){
+        message.channel.send('Use this command only in a guild')
+        return
+    }
 
     let guild_members = new Map()
     let roles_current_guild = new Map()
