@@ -1,6 +1,11 @@
 const unavailableRoles = ['@everyone', 'MAC-0.1']
 
 module.exports.run = (client, message, args, prefix) => {
+    
+    if (!message.guild) {
+        message.channel.send('Role can be set only in guild')
+        return
+    }
 
     //get user who send command
     const id = message.author.id
@@ -39,7 +44,12 @@ module.exports.run = (client, message, args, prefix) => {
     if (!role_to_member && args[1]) {message.channel.send(`The wrong member: ${args[1]}`); return}
     
     //set role
-    user.roles.set([role_to_set])
+    try {
+        user.roles.set([role_to_set])
+    } catch (error) {
+        message.channel.send('Not permision to set the role')    
+    }
+   
 }
 
 module.exports.help = {
