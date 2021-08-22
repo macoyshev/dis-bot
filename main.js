@@ -41,3 +41,4 @@ client.on("message", (message) => {
 
 
 client.login(process.env.TOKEN)
+//client.login(config.BOT_TOKEN)
